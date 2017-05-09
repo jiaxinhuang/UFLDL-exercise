@@ -125,7 +125,7 @@ softmaxModel = struct;
 % trainLabels
 lambda = 1e-4;
 options.maxIter = 100;
-softmaxModel = softmaxTrain(hiddenSize, numLabels, lambda, trainFeatures, testFeatures, options);
+softmaxModel = softmaxTrain(hiddenSize, numLabels, lambda, trainFeatures, trainLabels, options);
 
 
 
