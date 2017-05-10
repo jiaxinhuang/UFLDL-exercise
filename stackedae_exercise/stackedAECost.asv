@@ -62,35 +62,8 @@ groundTruth = full(sparse(labels, 1:M, 1));
 %
 
 aeNumber = numel(stack);
-m = size(data, 2);
-z = cell(aeNumber+1, 1);
-a = cell(aeNumber+1, 1);
-a{1} = data;
-for i=2:aeNumber+1
-    z{i} = stack{i-1}.w*a{i-1} + repmat(stack{i-1}.b, 1, m);
-    a{i} = sigmoid(z{i});
-end
+m = size()
 
-M = softmaxTheta * a{aeNumber+1};
-M = bsxfun(@minus, M, max(M, [], 1));
-M = exp(M);
-H = bsxfun(@rdivide, M, sum(M));
-M = log(H);
-M = M.*groundTruth;
-cost = -1/m * sum(sum(M, 1), 2) + lambda/2 * sum(sum(softmaxTheta .^ 2));
-softmaxThetaGrad = -1/m * (groundTruth - H) * a{aeNumber+1}' + lambda * softmaxTheta;
-
-delta = cell(aeNumber+1);
-delta{aeNumber+1} = -(softmaxTheta' * (groundTruth - H)) .* a{aeNumber+1}.*(1-a{aeNumber+1});
-
-for l=aeNumber:-1:2
-    delta{l} = (stack{l}.w'*delta{l+1}).*a{l}.*(1-a{l});
-end
-
-for l=aeNumber:-1:1
-    stackgrad{l}.w = delta{l+1}*a{l}'/m;
-    stackgrad{l}.b = sum(delta{l+1}, 2)/m;
-end
 
 
 
