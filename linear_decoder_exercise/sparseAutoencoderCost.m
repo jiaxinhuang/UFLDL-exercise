@@ -53,7 +53,7 @@ a3 = z3; %modify here
 rho = sparsityParam;
 rho_hat = sum(a2, 2) / m;
 KL = rho .* log(rho ./ rho_hat) + (1 - rho) .* log((1 - rho) ./ (1 - rho_hat));
-cost = sum(sum((data - a3) .^ 2) ./ 2) / m + lambda / 2 * (sum(sum(W2 .^ 2))) + beta * sum(KL);
+cost = sum(sum((data - a3) .^ 2) ./ 2) / m + lambda / 2 * (sum(sum(W1 .^ 2)) + sum(sum(W2 .^ 2))) + beta * sum(KL);
 
 delta_sparsity = beta * (-rho ./ rho_hat + ((1 - rho) ./ (1 - rho_hat)));
 delta3 = (a3 - data);%modify here
