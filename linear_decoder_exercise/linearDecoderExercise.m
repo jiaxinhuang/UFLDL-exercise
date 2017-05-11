@@ -19,11 +19,11 @@ numPatches = 100000;   % number of patches
 
 visibleSize = patchDim * patchDim * imageChannels;  % number of input units 
 outputSize  = visibleSize;   % number of output units
-hiddenSize  = 400;           % number of hidden units 
+hiddenSize  = 100;           % number of hidden units 
 
-sparsityParam = 0.035; % desired average activation of the hidden units.
-lambda = 3e-3;         % weight decay parameter       
-beta = 5;              % weight of sparsity penalty term       
+sparsityParam = 0.06; % desired average activation of the hidden units.
+lambda = 5e-8;         % weight decay parameter       
+beta = 3.5;              % weight of sparsity penalty term       
 
 epsilon = 0.1;	       % epsilon for ZCA whitening
 
@@ -63,7 +63,7 @@ diff = norm(numGrad-grad)/norm(numGrad+grad);
 % Should be small. In our implementation, these values are usually less than 1e-9.
 disp(diff); 
 
-assert(diff < 1e-9, 'Difference too large. Check your gradient computation again');
+assert(diff < 1e-8, 'Difference too large. Check your gradient computation again');
 
 % NOTE: Once your gradients check out, you should run step 0 again to
 %       reinitialize the parameters
