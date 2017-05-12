@@ -38,10 +38,10 @@ poolDim = 19;          % dimension of pooling region
 % Train the sparse autoencoder and fill the following variables with 
 % the optimal parameters:
 
-optTheta =  zeros(2*hiddenSize*visibleSize+hiddenSize+visibleSize, 1);
-ZCAWhite =  zeros(visibleSize, visibleSize);
-meanPatch = zeros(visibleSize, 1);
-
+%optTheta =  zeros(2*hiddenSize*visibleSize+hiddenSize+visibleSize, 1);
+%ZCAWhite =  zeros(visibleSize, visibleSize);
+%meanPatch = zeros(visibleSize, 1);
+load('STL10Features.mat');
 
 % --------------------------------------------------------------------
 

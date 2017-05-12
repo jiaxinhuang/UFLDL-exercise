@@ -30,6 +30,17 @@ pooledFeatures = zeros(numFeatures, numImages, floor(convolvedDim / poolDim), fl
 %   
 %   Use mean pooling here.
 % -------------------- YOUR CODE HERE --------------------
+pooledDim = floor(convolvedDim/poolDim);
+for imageNum = 1:numImages
+    for featureNum = 1:numFeatures
+        for poolRow = 1:pooledDim
+            for poolCol = 1:pooledDim
+                poolMatrix = convolvedFeatures(featureNum, imageNum, (poolRow-1) * poolDim + 1:poolRow * poolDim, (poolCol-1)*poolDim+1:poolCol*poolDim);
+                pooledFeatures(featureNum, imageNum, poolRow, poolCol) = mean(poolMatrix(:));
+            end
+        end
+    end
+end
 
 end
 
